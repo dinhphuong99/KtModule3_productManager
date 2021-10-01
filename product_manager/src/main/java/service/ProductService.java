@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_manager";
     private String jdbcUsername = "root";
     private String jdbcPassword = "123456";
@@ -34,11 +34,11 @@ public class ProductService implements IProductService{
 //  `category` int NOT NULL,
 
     String INSERT_PRODUCT_SQL = "INSERT INTO products" + "(product_name, price, quantity, color, category)VALUES" + "(?, ?, ?, ?, ?);";
-    String SELECT_PRODUCT_BY_ID = "select id, product_name, price, quantity, color, category from products where id = ?";
-    String DELETE_PRODUCT_SQL = "delete from products where id = ?;";
-    String FIND_PRODUCT_BY_NAME = "select id, product_name, price, quantity, color, category from products where product_name like = '%?%';";
-    String SELECT_ALL_PRODUCTS = "select * from products";
-    String UPDATE_PRODUCT_SQL = "update products set name = ?, email = ?, phone = ?, address = ? where id = ?;";
+    String SELECT_PRODUCT_BY_ID = "SELECT id, product_name, price, quantity, color, category FROM products WHERE id = ?";
+    String DELETE_PRODUCT_SQL = "DELETE FROM products WHERE id = ?;";
+    String FIND_PRODUCT_BY_NAME = "SELECT id, product_name, price, quantity, color, category FROM products WHERE product_name LIKE '%?%';";
+    String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
+    String UPDATE_PRODUCT_SQL = "UPDATE products SET product_name = ?, price = ?, quantity = ?, color = ?, category = ? WHERE id = ?;";
 
     public boolean insertProduct(Products product) throws SQLException {
         boolean insert = false;
@@ -141,10 +141,11 @@ public class ProductService implements IProductService{
         try (Connection connection = connection(); PreparedStatement statement = connection.prepareStatement(UPDATE_PRODUCT_SQL)) {
             statement.setString(1, product.getProductName());
             statement.setDouble(2, product.getPrice());
-            statement.setString(3, product.getColor());
-            statement.setInt(4, product.getCategory());
+            statement.setInt(3, product.getQuantity());
+            statement.setString(4, product.getColor());
+            statement.setInt(5, product.getCategory());
 //            statement.setDouble(5, customer.getBalance());
-            statement.setInt(5, product.getId());
+            statement.setInt(6, product.getId());
 
             rowUpdate = statement.executeUpdate() > 0;
         }

@@ -83,7 +83,6 @@ public class ProductServlet extends HttpServlet {
 
     private void findCustomers(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         String name = req.getParameter("name");
-
         List<Products> listProduct = productService.findProduct(name);
         req.setAttribute("listProduct", listProduct);
         RequestDispatcher dispatcher = req.getRequestDispatcher("product/list.jsp");
@@ -176,6 +175,7 @@ public class ProductServlet extends HttpServlet {
             req.setAttribute("error","Update Product fail");
             req.setAttribute("success",null);
         }
+
         showEditForm(req, resp);
     }
 }

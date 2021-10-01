@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>Banking Manager</title>
-    <script type="text/javascript" src = "jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src = "../resources/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../resources/js/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,6 +15,7 @@
             /*background-image: url("https://i2.wp.com/data.kenhsinhvien.net/files/2012/10/24/KenhSinhVien-tuyetroi15.gif");*/
             background-color: honeydew;
         }
+
         label.error {
             color: red;
         }
@@ -36,8 +37,17 @@
                 <h2><i class="fa fa-university" aria-hidden="true"></i>PRODUCT MANAGER</h2>
             </div>
             <div class="col-sm-7">
-                <a href="/products?action=create" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>Add New Product</span></a>
+                <div class="box">
+                    <a href="/products?action=create" class="btn btn-success"><i class="fa fa-plus-square-o"
+                                                                                 aria-hidden="true"></i> <span>Add New Product</span></a>
 
+                    <form class="sbox" action="${pageContext.request.contextPath}/products?action=search" method="get">
+                        <input class="stext" type="text" name="q" placeholder="Tìm kiếm theo tên...">
+                        <a class="sbutton" type="submit" href="javascript:void(0);">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
